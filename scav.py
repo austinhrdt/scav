@@ -26,7 +26,7 @@ async def scav(ctx, *, content):
             await speak("media/scav.mp3", get_voice_channel(ctx, "🎭Main Lobby"))
 
 
-def isolate(ctx, name):
+async def isolate(ctx, name):
     """ isolates scav & target """
     try:
         member = find_member(ctx.message.guild.members, name)
@@ -37,7 +37,7 @@ def isolate(ctx, name):
         print(err)
 
 
-def find_member(members, name):
+async def find_member(members, name):
     """ returns member object of target """
     for member in members:
         if member.name == name:
