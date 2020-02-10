@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  scav:
+    container_name: scav
+    image: ahardt013/scav:latest
+    restart: always
+    environment:
+      - DISCORD_TOKEN=${SCAV_TOKEN}
