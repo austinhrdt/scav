@@ -20,10 +20,14 @@ async def on_ready():
 async def scav(ctx, *, content):
     """ scav [user] """
     if is_admin(ctx.message.author):
-        if content != "":
-            await isolate(ctx, content)
-        else:
-            await speak("media/scav.mp3", get_voice_channel(ctx, "🎭Main Lobby"))
+        await isolate(ctx, content)
+
+
+@bot.command(pass_context=False)
+async def cheeki(ctx):
+    """ scav main lobby """
+    if is_admin(ctx.message.author):
+        await speak("media/scav.mp3", get_voice_channel(ctx, "🎭Main Lobby"))
 
 
 async def isolate(ctx, name):
@@ -31,13 +35,14 @@ async def isolate(ctx, name):
     try:
         member = find_member(ctx.message.guild.members, name)
         if member:
-            await member.edit(voice_channel="🌆Escape From Tarkov", reason="killa")
+            voice_chan = get_voice_channel(ctx, "🌆Escape From Tarkov")
+            await member.edit(voice_channel=voice_chan, reason="killa")
             await speak("media/scav.mp3", get_voice_channel(ctx, "🌆Escape From Tarkov"))
-    except Exception as err: #pylint:disable=broad-except
+    except Exception as err:  # pylint:disable=broad-except
         print(err)
 
 
-async def find_member(members, name):
+def find_member(members, name):
     """ returns member object of target """
     for member in members:
         if member.name == name:
@@ -79,4 +84,4 @@ ADMIN_ROLES = [
     "The OG's"]
 
 
-bot.run(os.getenv("DISCORD_TOKEN"))
+bot.run(os.getenv("SCAV_TOKEN"))
