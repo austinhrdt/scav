@@ -84,4 +84,4 @@ ADMIN_ROLES = [
     "The OG's"]
 
 
-bot.run(os.getenv("SCAV_TOKEN"))
+bot.run(os.getenv("DISCORD_TOKEN"))
