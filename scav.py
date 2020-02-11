@@ -47,6 +47,8 @@ def find_member(members, name):
     for member in members:
         if member.name == name:
             return member
+        if member.nick == name:
+            return member
     return None
 
 
