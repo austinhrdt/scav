@@ -12,8 +12,14 @@ client = discord.Client()  # pylint:disable=invalid-name
 @bot.event
 async def on_ready():
     """ start up ... """
-    print(bot.user.name)
-    print(bot.user.id)
+    print("%s total discord servers have been infected.", len(bot.guilds))
+    print(bot.guilds)
+    #activity = discord.ActivityType.custom
+    #print(activity)
+    #game = discord.Game(name=f"Infecting {len(bot.guilds)} servers", type=activity)
+    #yack = discord.CustomActivity(name="asdf")
+    #activity = discord.Activity(name=f"Infecting {len(bot.guilds)}", state="fuck", details="fuck", type=yack)
+    #await bot.change_presence(status="asdf")
 
 
 @bot.command(pass_context=True)
